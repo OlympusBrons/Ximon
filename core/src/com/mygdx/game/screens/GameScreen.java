@@ -64,7 +64,7 @@ public class GameScreen implements Screen {
         // Assigning alpha channel value to a variable
 
 
-        // Testing testing testing
+        // Testing testing testing testing
         sprite.setColor(Color.rgba8888(.5f,.5f,.5f,.8f));
         spriteColor = sprite.getColor();
         spriteAlphaString = Float.toString(spriteColor.a);
