@@ -29,7 +29,8 @@ public class GameScreen implements Screen {
     private Sound razbeep;
     private Sprite sprite;
     private String spriteAlphaString;
-
+// blah
+    //blah
     @Override
     public void show() {
         //Gdx.input.setInputProcessor(this);
