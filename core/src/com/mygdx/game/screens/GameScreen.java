@@ -29,23 +29,26 @@ public class GameScreen implements Screen {
     private Sound razbeep;
     private Sprite sprite;
     private String spriteAlphaString;
-// blah
-    //blah
+
     @Override
     public void show() {
+
         //Gdx.input.setInputProcessor(this);
         // width and height of native screen
         w = Gdx.graphics.getWidth();
         h = Gdx.graphics.getHeight();
-
+        System.out.println(spriteAlphaString);
 
         // Loading Textures, SpriteBatch, Sprite
         batch = new SpriteBatch();
         simonpad = new Texture(Gdx.files.internal("images/simon.png"));
         sprite = new Sprite(simonpad);
+
+        // Creating Bitmap font
         font = new BitmapFont();
         font.setColor(Color.RED);
-        font.setScale(5.0f);
+        font.setScale(1.0f);
+
 
         // Loading camera
         camera = new OrthographicCamera();
@@ -59,15 +62,27 @@ public class GameScreen implements Screen {
         razbeep = Gdx.audio.newSound(Gdx.files.internal("sounds/RAZZ.wav"));
 
         // Assigning alpha channel value to a variable
-        spriteColor = sprite.getColor();
 
+
+        // Testing testing testing
+        sprite.setColor(Color.rgba8888(.5f,.5f,.5f,.8f));
+        spriteColor = sprite.getColor();
         spriteAlphaString = Float.toString(spriteColor.a);
+        System.out.println("\nSprite color is  " + spriteColor);
+        System.out.println("Sprite red: " + sprite.getColor().r);
+        System.out.println("Sprite green: " + sprite.getColor().g);
+        System.out.println("Sprite blue: " + sprite.getColor().b);
+        System.out.println("Sprite alpha: " + sprite.getColor().a);
+        System.out.println("What the heck...");
+
+
+
 
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         camera.update();
@@ -76,7 +91,7 @@ public class GameScreen implements Screen {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(simonpad, 0, 0, w, h);
-        font.draw(batch, "Alpha channel value of sprite: " + spriteAlphaString, 200, 200);
+        font.draw(batch, "Alpha channel value of sprite: " + spriteAlphaString, 400, 20);
         batch.end();
 
         //   USE THIS FOR BUTTON FUNCTIONALITY!!!!!
