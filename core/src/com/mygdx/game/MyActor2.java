@@ -17,7 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 //
-// This class is only set up to help understand actors
+// This class is only set up to help me understand actors
 //
 //
 //

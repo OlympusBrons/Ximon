@@ -6,20 +6,26 @@ import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 
 public class XimonGame extends ApplicationAdapter implements InputProcessor {
 
        private Stage stage;
+       private Camera camera;
+       private Skin skin;
 
-
+    // When using Screens instead of stages
 // create() method when extending Game
 //    @Override
 //    public void create() {
@@ -31,7 +37,9 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
     //          ------This is temporary------            //
     @Override
     public void create() {
-        stage = new Stage(new ScreenViewport());
+        camera = new OrthographicCamera(800, 480);
+        stage = new Stage(new FitViewport(800, 480, camera));
+
         stage.addActor(new MyActor2(new Texture(Gdx.files.internal("images/simon.png"))));
         Gdx.input.setInputProcessor(stage);
         stage.setKeyboardFocus(stage.getActors().first());
@@ -45,6 +53,12 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
     @Override
     public void render() {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        // Setting fullscreen
+        Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        // Restore stage's viewport
+        stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
     }
@@ -90,6 +104,7 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
     // Will be using the touchDown and touchUp methods here for input
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+
         return false;
     }
 

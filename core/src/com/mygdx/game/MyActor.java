@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 
 //
-// This class is only set up to help understand actors
+// This class is only set up to help me understand actors
 //
 //
 //
