@@ -12,9 +12,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
@@ -24,6 +28,7 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
        private Stage stage;
        private Camera camera;
        private Skin skin;
+       private WidgetGroup widgetGroup;
 
     // When using Screens instead of stages
 // create() method when extending Game
@@ -37,17 +42,44 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
     //          ------This is temporary------            //
     @Override
     public void create() {
+
+        // Creating camera
         camera = new OrthographicCamera(800, 480);
-        stage = new Stage(new FitViewport(800, 480, camera));
 
-        stage.addActor(new MyActor2(new Texture(Gdx.files.internal("images/simon.png"))));
-        Gdx.input.setInputProcessor(stage);
-        stage.setKeyboardFocus(stage.getActors().first());
+        // Creating skin
+//      skin = new Skin(Gdx.files.internal("uiskin.json"));
 
-//        stage = new Stage(new ScreenViewport());
-//        MyActor actor = new MyActor();
-//        stage.addActor(actor);
+//        stage.addActor(new MyActor2(new Texture(Gdx.files.internal("images/simon.png"))));
 //        Gdx.input.setInputProcessor(stage);
+//        stage.setKeyboardFocus(stage.getActors().first());
+
+        // Creating stage and actors
+        stage = new Stage(new FitViewport(800, 480, camera));
+        XimonButton actor_g = new XimonButton("img/Ximon_00ff00.png", 0, 256, "green");
+        System.out.println(actor_g.toString() + " created.");
+        XimonButton actor_b = new XimonButton("img/Ximon_0000ff.png", 256, 0, "blue");
+        System.out.println(actor_b.toString() + " created.");
+        XimonButton actor_r = new XimonButton("img/Ximon_ff0000.png", 256, 256, "red");
+        System.out.println(actor_r.toString() + " created.");
+        XimonButton actor_y = new XimonButton("img/Ximon_ffff00.png", 0, 0, "yellow");
+        System.out.println(actor_y.toString() + " created.");
+
+//        Adding actors and assigning sprites to them
+//
+//        Actor - Green button:
+        stage.addActor(actor_g);
+
+        // Actor - Blue button:
+        stage.addActor(actor_b);
+
+        // Actor - Red button:
+        stage.addActor(actor_r);
+
+        // Actor - Yellow button:
+        stage.addActor(actor_y);
+
+        Gdx.input.setInputProcessor(stage);
+
 
     }
     @Override
@@ -82,7 +114,7 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
 
 
     public void dispose () {
-
+        stage.dispose();
     }
 
 
