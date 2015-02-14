@@ -46,13 +46,6 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
         // Creating camera
         camera = new OrthographicCamera(800, 480);
 
-        // Creating skin
-//      skin = new Skin(Gdx.files.internal("uiskin.json"));
-
-//        stage.addActor(new MyActor2(new Texture(Gdx.files.internal("images/simon.png"))));
-//        Gdx.input.setInputProcessor(stage);
-//        stage.setKeyboardFocus(stage.getActors().first());
-
         // Creating stage and actors
         stage = new Stage(new FitViewport(800, 480, camera));
         XimonButton actor_g = new XimonButton("img/Ximon_00ff00.png", 0, 256, "green");
