@@ -26,7 +26,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class XimonGame extends ApplicationAdapter implements InputProcessor {
 
        private Stage stage;
-       private Camera camera;
+       private OrthographicCamera camera;
        private Skin skin;
        private WidgetGroup widgetGroup;
 
@@ -48,6 +48,7 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
 
         // Creating stage and actors
         stage = new Stage(new FitViewport(800, 480, camera));
+
         XimonButton actor_g = new XimonButton("img/Ximon_00ff00.png", 0, 256, "green");
         System.out.println(actor_g.toString() + " created.");
         XimonButton actor_b = new XimonButton("img/Ximon_0000ff.png", 256, 0, "blue");
