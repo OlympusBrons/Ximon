@@ -22,7 +22,7 @@ This game is a mock-up of the classic Simon game.
 (2/7/15)
 - Nothing is functional yet, I literally just created the project and added some png files. 
 
- (2/9/2015)
+(2/9/2015)
 - Still not functional. I have sounds and a new way of displaying it on the screen (as a texture instead of using xml layout). 
 - I'm realizing new ideas as I explore libgdx features.
 
