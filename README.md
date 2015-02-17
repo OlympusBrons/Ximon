@@ -15,7 +15,7 @@ This game is a mock-up of the classic Simon game.
 - A "Xyncopation" mode. The idea is instead of ONLY having to copy the correct order of button pushes, you also have to keep up with his tempo (more or less)... probably using java's System.currentTimeMillis() to judge your tempo accuracy. This game mode will likely include a metrenome or some looped drum beat.
 - A "Xycho" mode will be just like normal except he will begin to actually rotate slowly, picking up some speed, changing direction as he pleases. (This one is only an idea. Need feedback because I'm not sure if this will be more annoying than challenging.)
 
-##--- **Progress** ---
+##--- **Progress Log** ---
  (2/6/15)
 - I included the libgdx library.
 
