@@ -30,18 +30,9 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
        private Skin skin;
        private WidgetGroup widgetGroup;
 
-    // When using Screens instead of stages
-// create() method when extending Game
-//    @Override
-//    public void create() {
-//        setScreen(new GameScreen());
-//    }
 
-
-    // Following a tutorial to better understand scene2d.//
-    //          ------This is temporary------            //
     @Override
-    public void create() {
+    public void create () {
 
         // Creating camera
         camera = new OrthographicCamera(800, 480);
@@ -72,12 +63,13 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
         // Actor - Yellow button:
         stage.addActor(actor_y);
 
+
         Gdx.input.setInputProcessor(stage);
 
 
     }
     @Override
-    public void render() {
+    public void render () {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         // Setting fullscreen
@@ -90,12 +82,12 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
     }
 
     @Override
-    public void resize(int width, int height) {
+    public void resize (int width, int height) {
 
     }
 
     @Override
-    public void pause() {
+    public void pause () {
 
     }
 
@@ -113,44 +105,44 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
 
 
     @Override
-    public boolean keyDown(int keycode) {
+    public boolean keyDown (int keycode) {
         return false;
     }
 
     @Override
-    public boolean keyUp(int keycode) {
+    public boolean keyUp (int keycode) {
         return false;
     }
 
     @Override
-    public boolean keyTyped(char character) {
+    public boolean keyTyped (char character) {
         return false;
     }
 
     // Will be using the touchDown and touchUp methods here for input
     @Override
-    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+    public boolean touchDown (int screenX, int screenY, int pointer, int button) {
 
         return false;
     }
 
     @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+    public boolean touchUp (int screenX, int screenY, int pointer, int button) {
         return false;
     }
 
     @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
+    public boolean touchDragged (int screenX, int screenY, int pointer) {
         return false;
     }
 
     @Override
-    public boolean mouseMoved(int screenX, int screenY) {
+    public boolean mouseMoved (int screenX, int screenY) {
         return false;
     }
 
     @Override
-    public boolean scrolled(int amount) {
+    public boolean scrolled (int amount) {
         return false;
     }
 }
