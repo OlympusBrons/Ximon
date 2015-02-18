@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -24,30 +25,40 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 
 public class XimonGame extends ApplicationAdapter implements InputProcessor {
-
-       private Stage stage;
-       private OrthographicCamera camera;
-       private Skin skin;
-       private WidgetGroup widgetGroup;
+    private SpriteBatch batch;
+    private Stage stage;
+    private OrthographicCamera camera;
+    private Skin skin;
+    private WidgetGroup widgetGroup;
 
 
     @Override
     public void create () {
-
+        batch = new SpriteBatch();
         // Creating camera
         camera = new OrthographicCamera(800, 480);
 
         // Creating stage and actors
         stage = new Stage(new FitViewport(800, 480, camera));
 
-        XimonButton actor_g = new XimonButton("img/Ximon_00ff00.png", 0, 256, "green");
+        XimonButton actor_g = new XimonButton("img/Ximon_00ff00.png", 190, 240, 210, 210, "green");
         System.out.println(actor_g.toString() + " created.");
-        XimonButton actor_b = new XimonButton("img/Ximon_0000ff.png", 256, 0, "blue");
-        System.out.println(actor_b.toString() + " created.");
-        XimonButton actor_r = new XimonButton("img/Ximon_ff0000.png", 256, 256, "red");
+        XimonButton actor_r = new XimonButton("img/Ximon_ff0000.png", 400, 240, 210, 210, "red");
         System.out.println(actor_r.toString() + " created.");
-        XimonButton actor_y = new XimonButton("img/Ximon_ffff00.png", 0, 0, "yellow");
+        XimonButton actor_y = new XimonButton("img/Ximon_ffff00.png", 190, 30, 210, 210, "yellow");
         System.out.println(actor_y.toString() + " created.");
+        XimonButton actor_b = new XimonButton("img/Ximon_0000ff.png", 400, 30, 210, 210, "blue");
+        System.out.println(actor_b.toString() + " created.");
+
+
+//        XimonButton actor_g = new XimonButton("img/Ximon_00ff00.png", 0, 240, 240, 240, "green");
+//        System.out.println(actor_g.toString() + " created.");
+//        XimonButton actor_b = new XimonButton("img/Ximon_0000ff.png", 240, 0, 240, 240, "blue");
+//        System.out.println(actor_b.toString() + " created.");
+//        XimonButton actor_r = new XimonButton("img/Ximon_ff0000.png", 240, 240, 240, 240, "red");
+//        System.out.println(actor_r.toString() + " created.");
+//        XimonButton actor_y = new XimonButton("img/Ximon_ffff00.png", 0, 0, 240, 240, "yellow");
+//        System.out.println(actor_y.toString() + " created.");
 
 //        Adding actors and assigning sprites to them
 //
@@ -71,7 +82,10 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
     @Override
     public void render () {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        batch.setProjectionMatrix(camera.combined);
+        batch.begin();
+        super.render();
+        batch.end();
         // Setting fullscreen
         Gdx.gl.glViewport(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         // Restore stage's viewport

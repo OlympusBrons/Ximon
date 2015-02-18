@@ -3,6 +3,7 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -29,9 +30,10 @@ class XimonButton extends Actor {
     }
 
 
-    public XimonButton (String file, int x, int y, final String name) {
+    public XimonButton (String file, int x, int y, int w, int h, final String name) {
         sprite = new Sprite(new Texture(Gdx.files.internal(file)));
-        this.setBounds(x, y, sprite.getWidth()/2, sprite.getHeight()/2);
+//        this.setBounds(x, y, sprite.getWidth()/2, sprite.getHeight()/2);
+        this.setBounds(x, y, w, h);
         this.name = name;
 
             if (name == "green") {
@@ -60,7 +62,9 @@ class XimonButton extends Actor {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 System.out.println("You touched the " + getName() + " button.");
-                sound.play();
+                if(sprite.getColor() != Color.BLACK) {
+                    sound.play(0.4f);
+                }
                 return true;
             }
 
