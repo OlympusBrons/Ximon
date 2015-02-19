@@ -19,7 +19,14 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
     private SpriteBatch batch;
     private Stage stage;
     private OrthographicCamera camera;
-
+    XimonButton actor_g;
+    XimonButton actor_gLit;
+    XimonButton actor_r;
+    XimonButton actor_rLit;
+    XimonButton actor_y;
+    XimonButton actor_yLit;
+    XimonButton actor_b;
+    XimonButton actor_bLit;
 
     @Override
     public void create () {
@@ -31,29 +38,46 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
         stage = new Stage(new FitViewport(800, 480, camera));
 
         // Creating (constructing) actors. Parameter info: XimonButton("[png file]", x, y, width, height, "[name]")
-        XimonButton actor_g = new XimonButton("img/green.png", 190, 240, 210, 210, "green");
+        actor_g = new XimonButton("img/green.png", 190, 240, 210, 210, "green");
         System.out.println(actor_g.toString() + " created.");
-        XimonButton actor_r = new XimonButton("img/red.png", 400, 240, 210, 210, "red");
+        // Lit version of button
+        actor_gLit = new XimonButton("img/green_on.png", 190, 240, 210, 210, "green lit");
+
+
+        actor_r = new XimonButton("img/red.png", 400, 240, 210, 210, "red");
         System.out.println(actor_r.toString() + " created.");
-        XimonButton actor_y = new XimonButton("img/yellow.png", 190, 30, 210, 210, "yellow");
+        // Lit version of button
+        actor_rLit = new XimonButton("img/red_on.png", 400, 240, 210, 210, "red lit");
+
+
+        actor_y = new XimonButton("img/yellow.png", 190, 30, 210, 210, "yellow");
         System.out.println(actor_y.toString() + " created.");
-        XimonButton actor_b = new XimonButton("img/blue.png", 400, 30, 210, 210, "blue");
+        // Lit version of button
+        actor_yLit = new XimonButton("img/yellow_on.png", 190, 30, 210, 210, "yellow lit");
+
+
+        actor_b = new XimonButton("img/blue.png", 400, 30, 210, 210, "blue");
         System.out.println(actor_b.toString() + " created.");
+        // Lit version of button
+        actor_bLit = new XimonButton("img/blue_on.png", 400, 30, 210, 210, "blue lit");
 
 
-//        Adding actors
+
+//        ADDING ACTORS
 //
-        // Green button:
+        // Green buttons:
+        stage.addActor(actor_gLit);
         stage.addActor(actor_g);
-
-        // Blue button:
+        // Red buttons:
+        stage.addActor(actor_rLit);
+        stage.addActor(actor_r);
+        // Yellow buttons:
+        stage.addActor(actor_yLit);
+        stage.addActor(actor_y);
+                // Blue buttons:
+        stage.addActor(actor_bLit);
         stage.addActor(actor_b);
 
-        // Red button:
-        stage.addActor(actor_r);
-
-        // Yellow button:
-        stage.addActor(actor_y);
 
 
         Gdx.input.setInputProcessor(stage);
