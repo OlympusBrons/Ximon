@@ -5,29 +5,20 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.HorizontalGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 
 public class XimonGame extends ApplicationAdapter implements InputProcessor {
+
     private SpriteBatch batch;
     private Stage stage;
     private OrthographicCamera camera;
-    private Skin skin;
 
 
     @Override
@@ -50,23 +41,22 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
         System.out.println(actor_b.toString() + " created.");
 
 
-//        Adding actors and assigning sprites to them
+//        Adding actors
 //
-//        Actor - Green button:
+        // Green button:
         stage.addActor(actor_g);
 
-        // Actor - Blue button:
+        // Blue button:
         stage.addActor(actor_b);
 
-        // Actor - Red button:
+        // Red button:
         stage.addActor(actor_r);
 
-        // Actor - Yellow button:
+        // Yellow button:
         stage.addActor(actor_y);
 
 
         Gdx.input.setInputProcessor(stage);
-
 
     }
     @Override
@@ -89,18 +79,18 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
 
     @Override
     public void resize (int width, int height) {
-
+            super.resize(width, height);
     }
 
     @Override
     public void pause () {
-
+        super.pause();
     }
 
 
     @Override
     public void resume () {
-
+        super.resume();
     }
 
 
