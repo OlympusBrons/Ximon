@@ -35,7 +35,7 @@ I am somewhat new to programming in Java, and very new to Android and libgdx. Th
 (2/18/2015)
 - Fixed the position and sizing problem
 - Feathered edges of buttons
-- Working on creating and adding the "On" buttons (or "lit"). 
+- Buttons light up when you press them
 
 ##--- **Tasks** ---
 
