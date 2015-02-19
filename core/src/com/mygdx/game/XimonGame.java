@@ -31,13 +31,13 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
         stage = new Stage(new FitViewport(800, 480, camera));
 
         // Creating (constructing) actors. Parameter info: XimonButton("[png file]", x, y, width, height, "[name]")
-        XimonButton actor_g = new XimonButton("img/Ximon_00ff00.png", 190, 240, 210, 210, "green");
+        XimonButton actor_g = new XimonButton("img/green.png", 190, 240, 210, 210, "green");
         System.out.println(actor_g.toString() + " created.");
-        XimonButton actor_r = new XimonButton("img/Ximon_ff0000.png", 400, 240, 210, 210, "red");
+        XimonButton actor_r = new XimonButton("img/red.png", 400, 240, 210, 210, "red");
         System.out.println(actor_r.toString() + " created.");
-        XimonButton actor_y = new XimonButton("img/Ximon_ffff00.png", 190, 30, 210, 210, "yellow");
+        XimonButton actor_y = new XimonButton("img/yellow.png", 190, 30, 210, 210, "yellow");
         System.out.println(actor_y.toString() + " created.");
-        XimonButton actor_b = new XimonButton("img/Ximon_0000ff.png", 400, 30, 210, 210, "blue");
+        XimonButton actor_b = new XimonButton("img/blue.png", 400, 30, 210, 210, "blue");
         System.out.println(actor_b.toString() + " created.");
 
 
