@@ -4,7 +4,6 @@ This game is a mock-up of the classic Simon game.
 
 I am somewhat new to programming in Java, and very new to Android and libgdx. This is my first Android game. It may take me a good while for this to be completed, but I will gladly soak up the experience. I'll also be open to any advice if possible. I will post in the issues section if I run into any serious trouble.
 
-This game is a mock-up of the classic Simon game.
 
 ##--- **When finished, there will be...** ---
 - A normal/classic game mode, nostaligically familiar to the original Simon game.
@@ -33,13 +32,19 @@ This game is a mock-up of the classic Simon game.
 - After taking a break, I came back and made the buttons functional... as in, when I push them, they make a sound, and when I let go, it stops. 
 - The size problem needs fixing, and the buttons need polishing. 
 
+(2/18/2015)
+- Fixed the position and sizing problem
+- Feathered edges of buttons
+- Working on creating and adding the "On" buttons (or "lit"). 
+
 ##--- **Tasks** ---
 
-- [ ] Create menu screen
 - [x] Add png files
 - [x] Link png to XML
 - [x] Add sound effects
 - [x] Make the "buttons" interactive (each one plays corresponding sound effect)
+- [x] Each button lights up when pressed
+- [ ] Create main menu
 - [ ] Build data structure (ArrayList) for handling the turns
 - [ ] Implement the turns (computer generates random color, adds to the ArrayList, and "pushes" buttons in order)
 - [ ] Create GAME OVER screen with scoreboard
