@@ -2,19 +2,24 @@ package com.mygdx.game;
 
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import java.util.ArrayList;
 
-public class XimonGame extends ApplicationAdapter implements InputProcessor {
+
+public class XimonGame extends Game {
 
     private SpriteBatch batch;
     private Stage stage;
@@ -27,6 +32,9 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
     XimonButton actor_yLit;
     XimonButton actor_b;
     XimonButton actor_bLit;
+    ArrayList<Byte> simonList;
+    ButtonSequencer buttonSequencer;
+
 
     @Override
     public void create () {
@@ -37,30 +45,31 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
         // Creating stage and actors
         stage = new Stage(new FitViewport(800, 480, camera));
 
-        // Creating (constructing) actors. Parameter info: XimonButton("[png file]", x, y, width, height, "[name]")
-        actor_g = new XimonButton("img/green.png", 190, 240, 210, 210, "green");
+        // Creating ArrayList and ButtonList
+        simonList = new ArrayList<Byte>();
+        buttonSequencer = new ButtonSequencer(simonList);
+
+        // Creating (constructing) actors. Parameter info:
+        // XimonButton("[png file]", x, y, width, height, "[name]")
+        actor_g = new XimonButton("img/green.png", 190, 240, 210, 210, 1);
         System.out.println(actor_g.toString() + " created.");
         // Lit version of button
-        actor_gLit = new XimonButton("img/green_on.png", 190, 240, 210, 210, "green lit");
+        actor_gLit = new XimonButton("img/green_on.png", 190, 240, 210, 210, 0);
 
-
-        actor_r = new XimonButton("img/red.png", 400, 240, 210, 210, "red");
+        actor_r = new XimonButton("img/red.png", 400, 240, 210, 210, 2);
         System.out.println(actor_r.toString() + " created.");
         // Lit version of button
-        actor_rLit = new XimonButton("img/red_on.png", 400, 240, 210, 210, "red lit");
+        actor_rLit = new XimonButton("img/red_on.png", 400, 240, 210, 210, 0);
 
-
-        actor_y = new XimonButton("img/yellow.png", 190, 30, 210, 210, "yellow");
+        actor_y = new XimonButton("img/yellow.png", 190, 30, 210, 210, 3);
         System.out.println(actor_y.toString() + " created.");
         // Lit version of button
-        actor_yLit = new XimonButton("img/yellow_on.png", 190, 30, 210, 210, "yellow lit");
+        actor_yLit = new XimonButton("img/yellow_on.png", 190, 30, 210, 210, 0);
 
-
-        actor_b = new XimonButton("img/blue.png", 400, 30, 210, 210, "blue");
+        actor_b = new XimonButton("img/blue.png", 400, 30, 210, 210, 4);
         System.out.println(actor_b.toString() + " created.");
         // Lit version of button
-        actor_bLit = new XimonButton("img/blue_on.png", 400, 30, 210, 210, "blue lit");
-
+        actor_bLit = new XimonButton("img/blue_on.png", 400, 30, 210, 210, 0);
 
 
 //        ADDING ACTORS
@@ -74,9 +83,10 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
         // Yellow buttons:
         stage.addActor(actor_yLit);
         stage.addActor(actor_y);
-                // Blue buttons:
+        // Blue buttons:
         stage.addActor(actor_bLit);
         stage.addActor(actor_b);
+
 
 
 
@@ -102,6 +112,16 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
     }
 
     @Override
+    public void setScreen(Screen screen) {
+        super.setScreen(screen);
+    }
+
+    @Override
+    public Screen getScreen() {
+        return super.getScreen();
+    }
+
+    @Override
     public void resize (int width, int height) {
             super.resize(width, height);
     }
@@ -111,60 +131,16 @@ public class XimonGame extends ApplicationAdapter implements InputProcessor {
         super.pause();
     }
 
-
     @Override
     public void resume () {
         super.resume();
     }
-
-
 
     public void dispose () {
         stage.dispose();
     }
 
 
-    @Override
-    public boolean keyDown (int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyUp (int keycode) {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped (char character) {
-        return false;
-    }
-
-    // Will be using the touchDown and touchUp methods here for input
-    @Override
-    public boolean touchDown (int screenX, int screenY, int pointer, int button) {
-
-        return false;
-    }
-
-    @Override
-    public boolean touchUp (int screenX, int screenY, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged (int screenX, int screenY, int pointer) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved (int screenX, int screenY) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled (int amount) {
-        return false;
-    }
 }
 
 
