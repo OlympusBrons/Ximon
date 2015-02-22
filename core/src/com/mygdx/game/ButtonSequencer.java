@@ -8,30 +8,43 @@ import java.util.Random;
  */
 public class ButtonSequencer {
 
-    public static ArrayList<Integer> playerList;
-    private ArrayList<Byte> computerList;
-    private final Random rand;
+    public ArrayList<Integer> playerList;
+    private ArrayList<Integer> computerList;
+    public Random rand;
     private int turn = 0;
     private int count;
 
-    public ButtonSequencer (ArrayList<Byte> computerList) {
-        this.rand = new Random();
+
+    public void addPlayerNums (int code) {
+        playerList.add(code);
+        count++;
     }
 
-    public void buttonGenerator (byte min, byte max, ArrayList<Byte> computerList) {
+    public int getCount () {
+        return count;
+    }
+
+    public void incrementCount () {
+        count++;
+    }
+
+    public void numGenerator (byte min, byte max, ArrayList<Integer> computerList) {
+        rand = new Random();
         int random = rand.nextInt((max - min) + 1) + min;
-        computerList.add((byte)random);
-        this.turn++;
+        computerList.add(random);
+        turn++;
+
     }
 
-
-    public static void clearPlayerList () {
+    public void clearPlayerList () {
         playerList.clear();
     }
+
     public void printMoveList (ArrayList<Byte> computerList) {
         for (byte i : computerList) {
             System.out.println(computerList.get(i));
         }
+
     }
 
 

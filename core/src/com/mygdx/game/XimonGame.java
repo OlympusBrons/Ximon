@@ -32,8 +32,9 @@ public class XimonGame extends Game {
     XimonButton actor_yLit;
     XimonButton actor_b;
     XimonButton actor_bLit;
-    ArrayList<Byte> simonList;
-    ButtonSequencer buttonSequencer;
+    ArrayList<Integer> playerList;
+    ArrayList<Integer> computerList;
+    public static ButtonSequencer buttonSequencer;
 
 
     @Override
@@ -45,9 +46,12 @@ public class XimonGame extends Game {
         // Creating stage and actors
         stage = new Stage(new FitViewport(800, 480, camera));
 
-        // Creating ArrayList and ButtonList
-        simonList = new ArrayList<Byte>();
-        buttonSequencer = new ButtonSequencer(simonList);
+        // Creating ArrayLists & ButtonSequencer
+        playerList = new ArrayList<Integer>();
+        computerList = new ArrayList<Integer>();
+        buttonSequencer = new ButtonSequencer();
+
+
 
         // Creating (constructing) actors. Parameter info:
         // XimonButton("[png file]", x, y, width, height, "[name]")

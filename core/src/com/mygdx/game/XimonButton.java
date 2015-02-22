@@ -24,7 +24,7 @@ class XimonButton extends Actor {
     XimonGame game = new XimonGame();
 
 
-    public XimonButton (String file, int x, int y, int w, int h, int colorCode) {
+    public XimonButton (String file, int x, int y, int w, int h, final int colorCode) {
         sprite = new Sprite(new Texture(Gdx.files.internal(file)));
         this.setBounds(x, y, w, h);
         this.num = colorCode;
@@ -42,9 +42,7 @@ class XimonButton extends Actor {
             else if (colorCode == 4) {
                 sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Blue.wav"));
             }
-            else {
-                System.out.println("Error: invalid string for " + this.toString());
-            }
+
 
         setTouchable(Touchable.enabled);
 
@@ -53,7 +51,6 @@ class XimonButton extends Actor {
 
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("You touched the " + getName() + " button.");
                 sound.play(0.4f);
 
                 if (XimonButton.this.isVisible()) XimonButton.this.setVisible(false);
@@ -72,9 +69,10 @@ class XimonButton extends Actor {
                 sound.stop();
                 XimonButton.this.setVisible(true);
 
+
                 // Counting number of touches for this turn
-                count++;
-                System.out.println("Count is: " + count);
+                XimonGame.buttonSequencer.incrementCount();
+                System.out.println("Count is: " + XimonGame.buttonSequencer.getCount());
 
         //         Append the colorCode to the playerList HERE.
         //         Loop through the computer list to check if current touch matches
