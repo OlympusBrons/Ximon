@@ -1,19 +1,18 @@
 package com.mygdx.game;
 
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 import java.util.ArrayList;
@@ -32,9 +31,14 @@ public class XimonGame extends Game {
     XimonButton actor_yLit;
     XimonButton actor_b;
     XimonButton actor_bLit;
-    ArrayList<Integer> playerList;
-    ArrayList<Integer> computerList;
+    public static ArrayList<Integer> playerList;
+    public static ArrayList<Integer> computerList;
     public static ButtonSequencer buttonSequencer;
+    private Sound beepGreen;
+    private Sound beepRed;
+    private Sound beepYellow;
+    private Sound beepBlue;
+    public RunnableAction ra;
 
 
     @Override
@@ -46,12 +50,24 @@ public class XimonGame extends Game {
         // Creating stage and actors
         stage = new Stage(new FitViewport(800, 480, camera));
 
+        ra = new RunnableAction();
+
         // Creating ArrayLists & ButtonSequencer
         playerList = new ArrayList<Integer>();
         computerList = new ArrayList<Integer>();
         buttonSequencer = new ButtonSequencer();
 
+        // Appending initial random number to computerList:
+        buttonSequencer.appendRandomNumber(1, 4, computerList);
+        System.out.println("Created computer's ArrayList.\nInitial number is: "
+        + computerList.get(0));
+        System.out.println("Size of computerList is currently " + computerList.size());
 
+        // Creating sounds (for computer's playback)
+        beepGreen = Gdx.audio.newSound(Gdx.files.internal("sounds/Green.wav"));
+        beepRed = Gdx.audio.newSound(Gdx.files.internal("sounds/Red.wav"));
+        beepYellow = Gdx.audio.newSound(Gdx.files.internal("sounds/Yellow.wav"));
+        beepBlue = Gdx.audio.newSound(Gdx.files.internal("sounds/Blue.wav"));
 
         // Creating (constructing) actors. Parameter info:
         // XimonButton("[png file]", x, y, width, height, "[name]")
@@ -94,11 +110,14 @@ public class XimonGame extends Game {
 
 
 
+
         Gdx.input.setInputProcessor(stage);
+
 
     }
     @Override
     public void render () {
+
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
@@ -113,7 +132,12 @@ public class XimonGame extends Game {
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+
+
+
     }
+
+
 
     @Override
     public void setScreen(Screen screen) {
@@ -143,6 +167,8 @@ public class XimonGame extends Game {
     public void dispose () {
         stage.dispose();
     }
+
+
 
 
 }

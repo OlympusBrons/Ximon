@@ -8,16 +8,13 @@ import java.util.Random;
  */
 public class ButtonSequencer {
 
-    public ArrayList<Integer> playerList;
-    private ArrayList<Integer> computerList;
     public Random rand;
     private int turn = 0;
     private int count;
 
 
-    public void addPlayerNums (int code) {
-        playerList.add(code);
-        count++;
+    public static void addPlayerNums (int code) {
+        XimonGame.playerList.add(code);
     }
 
     public int getCount () {
@@ -28,7 +25,7 @@ public class ButtonSequencer {
         count++;
     }
 
-    public void numGenerator (byte min, byte max, ArrayList<Integer> computerList) {
+    public void appendRandomNumber (int min, int max, ArrayList<Integer> computerList) {
         rand = new Random();
         int random = rand.nextInt((max - min) + 1) + min;
         computerList.add(random);
@@ -36,8 +33,18 @@ public class ButtonSequencer {
 
     }
 
+    public void performComputerSequence () {
+
+    }
+
+    public int getRandomInt (int min, int max) {
+        rand = new Random();
+        return rand.nextInt((max - min) + 1) + min;
+    }
+
+
     public void clearPlayerList () {
-        playerList.clear();
+        XimonGame.playerList.clear();
     }
 
     public void printMoveList (ArrayList<Byte> computerList) {

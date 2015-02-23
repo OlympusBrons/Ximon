@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.mygdx.game.XimonGame;
 
@@ -22,6 +23,7 @@ class XimonButton extends Actor {
     private final int num;
     private int count;
     XimonGame game = new XimonGame();
+    private final int code;
 
 
     public XimonButton (String file, int x, int y, int w, int h, final int colorCode) {
@@ -29,6 +31,7 @@ class XimonButton extends Actor {
         this.setBounds(x, y, w, h);
         this.num = colorCode;
         count = 0;
+        code = colorCode;
 
             if (colorCode == 1) {
                 sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Green.wav"));
@@ -43,8 +46,13 @@ class XimonButton extends Actor {
                 sound = Gdx.audio.newSound(Gdx.files.internal("sounds/Blue.wav"));
             }
 
+        setTouchable(Touchable.disabled);
 
-        setTouchable(Touchable.enabled);
+        try {
+            performAISequence();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // Used to handle touch input
         addListener(new ClickListener(){
@@ -52,7 +60,6 @@ class XimonButton extends Actor {
             @Override
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 sound.play(0.4f);
-
                 if (XimonButton.this.isVisible()) XimonButton.this.setVisible(false);
 
 
@@ -66,32 +73,55 @@ class XimonButton extends Actor {
 
             @Override
             public void touchUp (InputEvent event, float x, float y, int pointer, int button) {
+
+//                Stop the sound and "turn off" the button light
                 sound.stop();
                 XimonButton.this.setVisible(true);
 
 
-                // Counting number of touches for this turn
+//                 Count the number of touches for this turn
                 XimonGame.buttonSequencer.incrementCount();
                 System.out.println("Count is: " + XimonGame.buttonSequencer.getCount());
+                System.out.println("Color code is: " + colorCode);
 
-        //         Append the colorCode to the playerList HERE.
-        //         Loop through the computer list to check if current touch matches
-        //         the computer's num for the index in the ArrayList.
-
-//                ButtonSequencer.playerList.add(num);
-
-//                System.out.println("playerList is now: " + ButtonSequencer.playerList.toString());
+//                 Append the colorCode to the playerList.
+//                 Loop through the computer list to check if current touch matches
+//                 the computer's num for the index in the ArrayList.
+                XimonGame.playerList.add(colorCode);
+                System.out.println("Player list is: " + XimonGame.playerList.toString() + "\n");
+//
 
             }
 
 
 
         });
-        // Call computer num here
+
 
 
 
     }
+
+    public void performAISequence () throws InterruptedException {
+
+        setTouchable(Touchable.disabled);
+        System.out.println(XimonGame.computerList.toString());
+        for (int i = 0; i < XimonGame.computerList.size(); i++) {
+
+            if (code == XimonGame.computerList.get(i)) {
+                sound.play(0.4f);
+                XimonButton.this.setVisible(false);
+                Thread.sleep(XimonGame.buttonSequencer.getRandomInt(400,600));
+                sound.stop();
+                XimonButton.this.setVisible(true);
+                Thread.sleep(XimonGame.buttonSequencer.getRandomInt(100,150));
+
+            }
+
+        }
+        setTouchable(Touchable.enabled);
+    }
+
 
     @Override
     public void draw (Batch batch, float parentAlpha) {
